@@ -19,19 +19,158 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <!-- include my bootstrap companion style sheet -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <title>Friend Finder</title>
+    <title>Survey Questions</title>
 </head>
 
 <body>
 
+    <div id="errorModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 id="errorModalLabel" class="modal-title">Error!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><b>These errors were found in your submission:</b></p>
+                    <p id="error_div" class="text-danger"></p>
+                </div>
+                <div class="modal-footer">
+                    <p>Please correct the errors and resubmit the form.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container mt-4">
 
-        
+        <div class="border-bottom mb-4 pb-4">
+            <h2>Survey Questions</h2>
+        </div>
+
+        <div>
+            <form>
+                <div class="form-group">
+                    <h4>About You</h4>
+                    <div class="my-4">
+                        <h5>Your Name (required)<span id="your_name_error" class="text-danger small pl-4 d-none">This field
+                                is required!</span></h5>
+                        <input type="text" class="form-control" id="your_name" placeholder="Enter name here">
+                    </div>
+                    <div class="my-4 border-bottom pb-4">
+                        <h5>Link to your photo image (required)<span id="photo_url_error"
+                                class="text-danger small pl-4 d-none"> This field is required!</span></h5>
+                        <input type="text" class="form-control" id="photo_url" placeholder="photbucket.your_photo.jpg">
+                    </div>
+                    <div id="question_div"></div>
+                </div>
+                <button id="submit_survey" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <div class="mt-4 border-top pt-4">
+            <p class="mx-4"><a href="/api/friends">API Friends List</a><span class="mx-4">|</span><a
+                    href="https://github.com/mike14747">GitHub Repository</a><span class="mx-4">|</span><a
+                    href="/home">Home</a></p>
+        </div>
 
     </div>
+
+    <!-- survey javascript -->
+    <script>
+        "use strict";
+
+        var newDiv = "";
+        var newSelect = "";
+
+        var questionArray = [
+            "Your mind is always buzzing with unexplored ideas and plans.",
+            "Generally speaking, you rely more on your experience than your imagination.",
+            "You find it easy to stay relaxed and focused even when there is some pressure.",
+            "You rarely do something just out of sheer curiosity.",
+            "People can rarely upset you.",
+            "It is often difficult for you to relate to other people’s feelings.",
+            "In a discussion, truth should be more important than people’s sensitivities.",
+            "You rarely get carried away by fantasies and ideas.",
+            "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
+            "You feel more energetic after spending time with a group of people."
+        ];
+
+        var answerArray = [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+        ];
+
+        var questionCounter = 0;
+        var answerCounter = 0;
+        var errors = false;
+        var errorArray = [];
+
+        questionArray.forEach(function (q) {
+            questionCounter++;
+            answerCounter = 0;
+            newDiv = $("<div class='my-4'>");
+            newDiv.append("<label for='question" + questionCounter + "'>Question " + questionCounter + "<span id='question" + questionCounter + "_error' class='text-danger pl-4 d-none'>Answering this question is required!</span></label>");
+            newDiv.append("<h5>" + q + "</h5>");
+            newSelect = $("<select class='custom-select' id='question" + questionCounter + "' name='question" + questionCounter + "'>");
+            newSelect.append("<option selected>Select an Answer</option>");
+            answerArray.forEach(function (a) {
+                answerCounter++;
+                newSelect.append("<option value='" + answerCounter + "'>" + a + "</option>");
+            });
+            newDiv.append(newSelect);
+            $("#question_div").append(newDiv);
+        });
+
+        $("#submit_survey").on("click", function (event) {
+            event.preventDefault();
+            $("#errorModal").modal("hide");
+            $("#error_div").empty();
+            errorArray = [];
+            errors = false;
+            // verify that both input fields arent't blank and that all 10 questions have been answered
+            if ($("#your_name").val().trim() === "") {
+                errors = true;
+                errorArray.push("Your Name field was left blank");
+                $("#your_name_error").removeClass("d-none");
+            } else {
+                $("#your_name_error").addClass("d-none");
+            }
+            if ($("#photo_url").val().trim() === "") {
+                errors = true;
+                errorArray.push("Link to your photo image field was left blank");
+                $("#photo_url_error").removeClass("d-none");
+            } else {
+                $("#photo_url_error").addClass("d-none");
+            }
+            for (let i = 1; i <= questionArray.length; i++) {
+                if ($("#question" + i).val() === "Select an Answer") {
+                    errors = true;
+                    errorArray.push("Question " + i + " was not answered");
+                    $("#question" + i + "_error").removeClass("d-none");
+                } else {
+                    $("#question" + i + "_error").addClass("d-none");
+                }
+            }
+            if (errors === false) {
+                // process the form
+                console.log("No errors found!");
+            } else {
+                // show the modal indicatiing errors
+                errorArray.forEach(function (err) {
+                    $("#error_div").append("<p>" + err + "</p>");
+                });
+                $("#errorModal").modal("show");
+                console.log("Errors exist!");
+            }
+        });
+    </script>
 
 </body>
 
