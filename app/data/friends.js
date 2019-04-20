@@ -19,12 +19,13 @@ var friendsArray = [
     {name: "Charlie", photo_url: "Charlie_url", scores: [5, 2, 2, 3, 3, 4, 4, 1, 5, 5]},
     {name: "Jacob", photo_url: "Jacob_url", scores: [1, 1, 3, 4, 3, 1, 1, 5, 3, 1]},
     {name: "Alfie", photo_url: "Alfie_url", scores: [3, 3, 4, 4, 3, 4, 4, 2, 3, 4]},
-    {name: "Freddie", photo_url: "Freddie_url", scores: [2, 4, 2, 4, 3, 3, 4, 5, 2, 1]}];
+    {name: "Freddie", photo_url: "Freddie_url", scores: [2, 4, 2, 4, 3, 3, 4, 5, 2, 1]},
+    {name: "Oscar", photo_url: "Oscar_url", scores: [4, 4, 1, 4, 4, 2, 4, 1, 5, 2]}];
 
 module.exports = friendsArray;
 
 /*
-var friends = ["Olivia", "Amelia", "Isla", "Emily", "Ava", "Lily", "Mia", "Sophia", "Isabella", "Grace", "Oliver", "Harry", "Jack", "George", "Noah", "Charlie", "Jacob", "Alfie", "Freddie"];
+var friends = ["Olivia", "Amelia", "Isla", "Emily", "Ava", "Lily", "Mia", "Sophia", "Isabella", "Grace", "Oliver", "Harry", "Jack", "George", "Noah", "Charlie", "Jacob", "Alfie", "Freddie", "Oscar"];
 var friendsArray = [];
 var scores = [];
 

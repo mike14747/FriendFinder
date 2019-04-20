@@ -193,14 +193,14 @@
                 $.post("/api/friends", newFriend).then(function (data) {
                     document.getElementById("friend_form").reset();
                     tempArray = [];
-                    for (let i = 0; i < friendsArray.length - 1; i++) {
+                    for (let i = 0; i < data.length - 1; i++) {
                         scoreHolder = 0;
-                        for (let j = 0; j <= friendsArray["scores"].length; j++) {
-                            scoreHolder += Math.abs(data["scores"][j] - friendsArray["scores"][i]);
+                        for (let j = 0; j < data[i]["scores"].length; j++) {
+                            // console.log(data[i]["scores"][j] + " | " + newFriend["scores"][j])
+                            scoreHolder += Math.abs(data[i]["scores"][j] - newFriend["scores"][j]);
                         }
                         tempArray.push(scoreHolder);
                     }
-                    console.log(tempArray);
                     $("#friend_img").html("Test photo URL");
                     $("#friend_name").html("Test Name");
                     $("#friendModal").modal("show");
