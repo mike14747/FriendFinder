@@ -81,7 +81,7 @@
                     </div>
                     <div class="my-4 border-bottom pb-4">
                         <h5>Link to your photo image (required)<span id="photo_url_error"
-                                class="text-danger small pl-4 d-none"> This field is required!</span></h5>
+                                class="text-danger small pl-4 d-none">This field is required and it must end with 'jpeg, jpg, gif or png'!</span></h5>
                         <input type="text" class="form-control" id="photo_url" placeholder="url_of_your_photo.jpg">
                     </div>
                     <div id="question_div"></div>
@@ -111,18 +111,20 @@
         var errorArray = [];
         var newFriend = {};
         var scoreHolder = 0;
+        var bestMatchID = 0;
+        var bestMatchScore = 0;
 
         var questionArray = [
-            "Your mind is always buzzing with unexplored ideas and plans.",
-            "Generally speaking, you rely more on your experience than your imagination.",
+            "You think it's important for your beliefs to align with reality.",
+            "You enjoy vibrant social events with lots of people.",
             "You find it easy to stay relaxed and focused even when there is some pressure.",
             "You rarely do something just out of sheer curiosity.",
             "People can rarely upset you.",
-            "It is often difficult for you to relate to other people’s feelings.",
+            "You often rely on other people to be the ones to start a conversation and keep it going.",
             "In a discussion, truth should be more important than people’s sensitivities.",
-            "You rarely get carried away by fantasies and ideas.",
-            "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
-            "You feel more energetic after spending time with a group of people."
+            "You are more of a detail-oriented than a big picture person.",
+            "You are still bothered by the mistakes you made a long time ago.",
+            "You often spend time exploring unrealistic yet intriguing ideas."
         ];
 
         var answerArray = [
@@ -158,16 +160,16 @@
             $("#friend_name").empty();
             errorArray = [];
             errors = false;
-            if ($("#your_name").val().trim() === "") {
+            if (!$("#your_name").val().trim().match(/^[a-zA-Z0-9_-]{1,15}$/)) {
                 errors = true;
-                errorArray.push("'Your Name' field was left blank");
+                errorArray.push("'Your Name' field was left blank or included special characters!");
                 $("#your_name_error").removeClass("d-none");
             } else {
                 $("#your_name_error").addClass("d-none");
             }
-            if ($("#photo_url").val().trim() === "") {
+            if (!$("#photo_url").val().trim().match(/\.(jpeg|jpg|gif|png)$/)) {
                 errors = true;
-                errorArray.push("'Link to your photo image' field was left blank");
+                errorArray.push("'Link to your photo image' field was not valid...<br />it must end with 'jpeg, jpg, gif or png'");
                 $("#photo_url_error").removeClass("d-none");
             } else {
                 $("#photo_url_error").addClass("d-none");
@@ -183,8 +185,8 @@
             }
             if (errors === false) {
                 newFriend = {
-                    "name": $("#your_name").val().trim().replace(/\s+/g, "").toLowerCase(),
-                    "photo": $("#photo_url").val().trim().replace(/\s+/g, "").toLowerCase(),
+                    "name": $("#your_name").val().trim(),
+                    "photo": $("#photo_url").val().trim(),
                     "scores": []
                 }
                 for (let i = 1; i <= questionArray.length; i++) {
@@ -196,13 +198,21 @@
                     for (let i = 0; i < data.length - 1; i++) {
                         scoreHolder = 0;
                         for (let j = 0; j < data[i]["scores"].length; j++) {
-                            // console.log(data[i]["scores"][j] + " | " + newFriend["scores"][j])
                             scoreHolder += Math.abs(data[i]["scores"][j] - newFriend["scores"][j]);
+                        }
+                        if (i === 0) {
+                            bestMatchScore = scoreHolder;
+                            bestMatchID = i;
+                        } else {
+                            if (scoreHolder < bestMatchScore) {
+                                bestMatchScore = scoreHolder;
+                                bestMatchID = i;
+                            }
                         }
                         tempArray.push(scoreHolder);
                     }
-                    $("#friend_img").html("Test photo URL");
-                    $("#friend_name").html("Test Name");
+                    $("#friend_img").html("<img src='" + data[bestMatchID]["photo_url"] + "' width='300px' height='auto' alt='" + data[bestMatchID]["name"] + "_pic'>");
+                    $("#friend_name").text(data[bestMatchID]["name"]);
                     $("#friendModal").modal("show");
                 });
             } else {
@@ -213,7 +223,6 @@
             }
         });
     </script>
-
 </body>
 
 </html>
