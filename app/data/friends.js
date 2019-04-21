@@ -23,23 +23,3 @@ var friendsArray = [
     {name: "Oscar", photo_url: "https://www.bestfunnies.com/wp-content/uploads/2015/06/Ugly-People-Pics-4.jpg", scores: [4, 4, 1, 4, 4, 2, 4, 1, 5, 2]}];
 
 module.exports = friendsArray;
-
-/*
-var friends = ["Olivia", "Amelia", "Isla", "Emily", "Ava", "Lily", "Mia", "Sophia", "Isabella", "Grace", "Oliver", "Harry", "Jack", "George", "Noah", "Charlie", "Jacob", "Alfie", "Freddie", "Oscar"];
-var friendsArray = [];
-var scores = [];
-
-for (let i=0; i<friends.length; i++) {
-    scores = [];
-    let obj = {};
-    for (let a=1; a<=10; a++) {
-        let randNum = Math.round(Math.random()*4)+1;
-        scores.push(randNum);
-    }
-    obj.name = friends[i];
-    obj.photo_url = friends[i] + "_url";
-    obj.scores = scores;
-    friendsArray.push(obj);
-}
-console.log(friendsArray);
-*/
