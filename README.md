@@ -12,10 +12,12 @@ This project was very useful in learning express to start and utilize a server, 
 
 * The user input for the name, photo url and question answers fields is validated the following ways:
 ```
-// name field input validation is handled via a regular expression match of letters (upper or lower case), numbers, dashes and underscores
+// name field input validation is handled via a regular expression match of letters (upper or lower case), 
+// numbers, dashes and underscores... and from 1 to 15 characters in length
 if (!$("#your_name").val().trim().match(/^[a-zA-Z0-9_-]{1,15}$/)) {
 
-// photo url field input validation is done using a regular express test of whether the user input ends in .jpeg, .jpg, .gif or .png
+// photo url field input validation is done using a regular express test of whether the user input ends in 
+// .jpeg, .jpg, .gif or .png
 if (!$("#photo_url").val().trim().match(/\.(jpeg|jpg|gif|png)$/)) {
 
 // question answers are validated by checking that the value of the option in the select element has been set
