@@ -6,7 +6,6 @@ var router = express.Router();
 var friendsArray = require("../data/friends.js");
 
 router.get("/friends", function (req, res) {
-    // res.send('<h1>This is my test friends GET page!</h1>');
     res.json(friendsArray);
 });
 

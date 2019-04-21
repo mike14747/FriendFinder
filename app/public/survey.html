@@ -22,7 +22,7 @@
     <title>Survey Questions</title>
 </head>
 
-<body>
+<body class="bg-light">
 
     <div id="errorModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel"
         aria-hidden="true">
@@ -63,21 +63,21 @@
         </div>
     </div>
 
-    <div class="container mt-4">
+    <div class="container my-4 bg-white border border-color-secondary">
 
         <div class="border-bottom mb-4 pb-4">
-            <h2>Survey Questions</h2>
+            <h2 class="pt-4">Survey Questions</h2>
         </div>
 
         <div>
             <form id="friend_form">
                 <div class="form-group">
-                    <h4>About You</h4>
+                    <h5 class="text-secondary">About You</h5>
                     <div class="my-4">
                         <h5>Your Name (required)<span id="your_name_error" class="text-danger small pl-4 d-none">This
                                 field
                                 is required!</span></h5>
-                        <input type="text" class="form-control" id="your_name" placeholder="Enter name here">
+                        <input type="text" class="form-control" id="your_name" maxlength="15" placeholder="Enter name here">
                     </div>
                     <div class="my-4 border-bottom pb-4">
                         <h5>Link to your photo image (required)<span id="photo_url_error"
@@ -91,7 +91,7 @@
         </div>
 
         <div class="mt-4 border-top pt-4">
-            <p class="mx-4"><a href="/api/friends">API Friends List</a><span class="mx-4">|</span><a
+            <p class="mx-4 pb-4"><a href="/api/friends">API Friends List</a><span class="mx-4">|</span><a
                     href="https://github.com/mike14747/FriendFinder">GitHub Repository</a><span class="mx-4">|</span><a
                     href="/home">Home</a></p>
         </div>
@@ -139,7 +139,7 @@
             questionCounter++;
             answerCounter = 0;
             newDiv = $("<div class='my-4'>");
-            newDiv.append("<label for='question" + questionCounter + "'>Question " + questionCounter + "<span id='question" + questionCounter + "_error' class='text-danger pl-4 d-none'>Answering this question is required!</span></label>");
+            newDiv.append("<label for='question" + questionCounter + "' class='text-secondary'>Question " + questionCounter + "<span id='question" + questionCounter + "_error' class='text-danger pl-4 d-none'>Answering this question is required!</span></label>");
             newDiv.append("<h5>" + q + "</h5>");
             newSelect = $("<select class='custom-select' id='question" + questionCounter + "' name='question" + questionCounter + "'>");
             newSelect.append("<option selected>Select an Answer</option>");
