@@ -41,7 +41,7 @@ router.post("/friends", function (req, res) {
 module.exports = router;
 ```
 
-An interest side note about the initial friendsArray array of possible friend matches... I wrote the following to seed the array with 20 fictitious people. It starts out with an array of 20 random names and another array of 20 random (and funny) photo urls I found online. I ran this script and used the resulting object as my friendsArray. You might notice that the random number generator that fills the scores for each randon person with random values doesn't use the standard Math.floor() approach. Instead, I used Math.round() with the thinking that 1's and 5's are typically input less than 2's, 3's or 4's. Using this Math.round() approach, the chances of each number being selected are:
+An interest side note about the initial friendsArray array of possible friend matches... I wrote the following to seed the array with 20 fictitious people. It starts out with an array of 20 random names and another array of 20 random (and funny) photo urls I found online. I ran this script and used the resulting object as my friendsArray. You might notice that the random number generator that fills the scores for each random person with random values doesn't use the standard Math.floor() approach. Instead, I used Math.round() with the thinking that 1's and 5's are typically input less than 2's, 3's or 4's. Using this Math.round() approach, the chances of each number being selected are:
 * 1 - 12.5%
 * 2 - 25%
 * 3 - 25%
