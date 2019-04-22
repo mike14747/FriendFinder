@@ -19,6 +19,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+    <!-- fontawesome cdn -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
     <title>Survey Questions</title>
 </head>
 
@@ -63,34 +67,38 @@
         </div>
     </div>
 
-    <div class="container my-4 bg-white border border-color-secondary">
+    <div class="container p-0 my-4 bg-white border border-color-secondary">
 
-        <div class="border-bottom mb-4 pb-4">
-            <h2 class="pt-4">Survey Questions</h2>
+        <div class="border-bottom mb-4 px-4 pb-4 bg-warning">
+            <h2 class="pt-4"><i class="fas fa-poll-h fa-lg pr-4"></i>Survey Questions</h2>
+            
         </div>
 
-        <div>
+        <div class="px-4">
             <form id="friend_form">
                 <div class="form-group">
-                    <h5 class="text-secondary">About You</h5>
+                    <h5 class="text-secondary">About You:</h5>
                     <div class="my-4">
-                        <h5>Your Name (required)<span id="your_name_error" class="text-danger small pl-4 d-none">This
+                        <h5><span class="text-info"><i class="far fa-address-card pr-2"></i></span>Your Name (required)<span id="your_name_error" class="text-danger small pl-4 d-none"><i class="fas fa-exclamation-circle pr-2"></i>This
                                 field
                                 is required!</span></h5>
-                        <input type="text" class="form-control" id="your_name" maxlength="15" placeholder="Enter name here">
+                        <input type="text" class="form-control" id="your_name" maxlength="15"
+                            placeholder="Enter name here">
                     </div>
                     <div class="my-4 border-bottom pb-4">
-                        <h5>Link to your photo image (required)<span id="photo_url_error"
-                                class="text-danger small pl-4 d-none">This field is required and it must end with 'jpeg, jpg, gif or png'!</span></h5>
+                        <h5><span class="text-info"><i class="fas fa-link pr-2"></i></span>Link to your photo image (required)<span id="photo_url_error"
+                                class="text-danger small pl-4 d-none"><i class="fas fa-exclamation-circle pr-2"></i>This field is required and it must end with 'jpeg,
+                                jpg, gif or png'!</span></h5>
                         <input type="text" class="form-control" id="photo_url" placeholder="url_of_your_photo.jpg">
                     </div>
+                    <h5 class="text-secondary">Questions:</h5>
                     <div id="question_div"></div>
                 </div>
-                <button id="submit_survey" type="submit" class="btn btn-primary">Submit</button>
+                <button id="submit_survey" type="submit" class="btn btn-primary my-4">Submit<i class="fas fa-upload pl-4"></i></button>
             </form>
         </div>
 
-        <div class="mt-4 border-top pt-4">
+        <div class="mt-4 border-top pt-4 px-4">
             <p class="mx-4 pb-4"><a href="/api/friends">API Friends List</a><span class="mx-4">|</span><a
                     href="https://github.com/mike14747/FriendFinder">GitHub Repository</a><span class="mx-4">|</span><a
                     href="/home">Home</a></p>
@@ -139,7 +147,7 @@
             questionCounter++;
             answerCounter = 0;
             newDiv = $("<div class='my-4'>");
-            newDiv.append("<label for='question" + questionCounter + "' class='text-secondary'>Question " + questionCounter + "<span id='question" + questionCounter + "_error' class='text-danger pl-4 d-none'>Answering this question is required!</span></label>");
+            newDiv.append("<label for='question" + questionCounter + "' class='text-secondary'><span class='text-info'><i class='fas fa-question-circle pr-2'></i></span>Question " + questionCounter + "<span id='question" + questionCounter + "_error' class='text-danger pl-4 d-none'><i class='fas fa-exclamation-circle pr-2'></i>Answering this question is required!</span></label>");
             newDiv.append("<h5>" + q + "</h5>");
             newSelect = $("<select class='custom-select' id='question" + questionCounter + "' name='question" + questionCounter + "'>");
             newSelect.append("<option selected>Select an Answer</option>");
@@ -217,7 +225,7 @@
                 });
             } else {
                 errorArray.forEach(function (err) {
-                    $("#error_div").append("<p>" + err + "</p>");
+                    $("#error_div").append("<p><i class='fas fa-exclamation-circle pr-2'></i>" + err + "</p>");
                 });
                 $("#errorModal").modal("show");
             }
