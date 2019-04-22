@@ -23,6 +23,10 @@ if (!$("#photo_url").val().trim().match(/\.(jpeg|jpg|gif|png)$/)) {
 // question answers are validated by checking that the value of the option in the select element has been set
 ```
 
+All styling is done using Bootstrap styles. There are no custom styles being used.
+
+Several FontAwesome icons are included on the survey page.
+
 The url routing is handled in the apiRoutes.js and htmlRoutes.js files.
 * The express.Router class was used as the middleware in both of these remote route handling files.
 * Here's a code snippet showing the POST route and processing using the express.Router class as the middleware (note that the 'scores' results must be turned back into numbers before being added to the friendsArray since they are transmitted as strings):
