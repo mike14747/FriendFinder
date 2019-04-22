@@ -1,10 +1,10 @@
 # FriendFinder
 
-Friend Finder is a full-stack app/website that takes in results from user surveys, then compares the submitted answers with those from other users.
+Friend Finder is a full-stack app/website that takes in results from a user survey, then compares the submitted answers with those from other users.
 
-The user's best overall match will be displayed... including the name and picture of their closest friend match.
+The user's best overall match will be displayed with the name and picture of their closest friend match.
 
-This project was very useful in learning express to start and utilize a server, the concept of url routing, the breaking up of a project into several files for simplicity and input validation.
+This project was very useful in learning express to start and utilize a server, the concept of url routing, the back and forth passing of data via the POST method, the breaking up of a project into several files for simplicity and input validation.
 
 ---
 
@@ -34,8 +34,8 @@ router.post("/friends", function (req, res) {
     for (let i=0; i<newfriend["scores"].length; i++) {
         newfriend["scores"][i] = parseInt(newfriend["scores"][i]);
     }
-    friendsArray.push(newfriend);
     res.json(friendsArray);
+    friendsArray.push(newfriend);
 });
 
 module.exports = router;
@@ -47,6 +47,7 @@ An interest side note about the initial friendsArray array of possible friend ma
 * 3 - 25%
 * 4 - 25%
 * 5 - 12.5%
+
 This code is not part of the app. I'm just including it here to point out how I seeded the initial friendsArray.
 ```
 var friends = ["Olivia", "Amelia", "Isla", "Maude", "Ava", "Lily", "Mia", "Sophia", "Isabella", "Grace", "Oliver", "Bong", "Stubby", "George", "Noah", "Charlie", "Jacob", "Alfie", "Freddie", "Oscar"];

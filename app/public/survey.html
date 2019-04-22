@@ -203,7 +203,7 @@
                 $.post("/api/friends", newFriend).then(function (data) {
                     document.getElementById("friend_form").reset();
                     tempArray = [];
-                    for (let i = 0; i < data.length - 1; i++) {
+                    for (let i = 0; i < data.length; i++) {
                         scoreHolder = 0;
                         for (let j = 0; j < data[i]["scores"].length; j++) {
                             scoreHolder += Math.abs(data[i]["scores"][j] - newFriend["scores"][j]);

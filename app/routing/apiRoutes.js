@@ -14,8 +14,9 @@ router.post("/friends", function (req, res) {
     for (let i=0; i<newfriend["scores"].length; i++) {
         newfriend["scores"][i] = parseInt(newfriend["scores"][i]);
     }
-    friendsArray.push(newfriend);
     res.json(friendsArray);
+    friendsArray.push(newfriend);
+    
 });
 
 router.get("*", function (req, res) {
