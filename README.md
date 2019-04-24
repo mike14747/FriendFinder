@@ -10,7 +10,7 @@ This project was very useful in learning express to start and utilize a server, 
 
 ### About this project's code:
 
-* The user input for the name, photo url and question answers fields is validated the following ways:
+* The user input is validated the following ways:
 ```
 // name field input validation is handled via a regular expression match of letters (upper or lower case), 
 // numbers, dashes and underscores... and from 1 to 15 characters in length
