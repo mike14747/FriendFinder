@@ -13,8 +13,8 @@ This project was very useful in learning express to start and utilize a server, 
 * The user input is validated the following ways:
 ```
 // name field input validation is handled via a regular expression match of letters (upper or lower case), 
-// numbers, dashes and underscores... and from 1 to 15 characters in length
-if (!$("#your_name").val().trim().match(/^[a-zA-Z0-9_-]{1,15}$/)) {
+// numbers, spaces, dashes and underscores... from 1 to 15 characters in length (the input field has a maxlength set to 15)
+if (!$("#your_name").val().trim().match(/^[a-zA-Z0-9 _-]{1,15}$/)) {
 
 // photo url field input validation is done using a regular express test of whether the user input ends in 
 // .jpeg, .jpg, .gif or .png

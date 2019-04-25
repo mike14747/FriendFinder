@@ -112,15 +112,11 @@
 
         var newDiv = "";
         var newSelect = "";
-        var tempArray = [];
         var questionCounter = 0;
         var answerCounter = 0;
         var errors = false;
         var errorArray = [];
         var newFriend = {};
-        var scoreHolder = 0;
-        var bestMatchID = 0;
-        var bestMatchScore = 0;
 
         var questionArray = [
             "You think it's important for your beliefs to align with reality.",
@@ -168,7 +164,7 @@
             $("#friend_name").empty();
             errorArray = [];
             errors = false;
-            if (!$("#your_name").val().trim().match(/^[a-zA-Z0-9_-]{1,15}$/)) {
+            if (!$("#your_name").val().trim().match(/^[a-zA-Z0-9 _-]{1,15}$/)) {
                 errors = true;
                 errorArray.push("'Your Name' field was left blank or included special characters!");
                 $("#your_name_error").removeClass("d-none");
@@ -202,25 +198,8 @@
                 }
                 $.post("/api/friends", newFriend).then(function (data) {
                     document.getElementById("friend_form").reset();
-                    tempArray = [];
-                    for (let i = 0; i < data.length; i++) {
-                        scoreHolder = 0;
-                        for (let j = 0; j < data[i]["scores"].length; j++) {
-                            scoreHolder += Math.abs(data[i]["scores"][j] - newFriend["scores"][j]);
-                        }
-                        if (i === 0) {
-                            bestMatchScore = scoreHolder;
-                            bestMatchID = i;
-                        } else {
-                            if (scoreHolder < bestMatchScore) {
-                                bestMatchScore = scoreHolder;
-                                bestMatchID = i;
-                            }
-                        }
-                        tempArray.push(scoreHolder);
-                    }
-                    $("#friend_img").html("<img src='" + data[bestMatchID]["photo_url"] + "' width='300px' height='auto' alt='" + data[bestMatchID]["name"] + "_pic'>");
-                    $("#friend_name").text(data[bestMatchID]["name"]);
+                    $("#friend_img").html("<img src='" + data[1] + "' width='300px' height='auto' alt='" + data[0] + "_pic'>");
+                    $("#friend_name").text(data[0]);
                     $("#friendModal").modal("show");
                 });
             } else {
